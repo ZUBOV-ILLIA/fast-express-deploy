@@ -28,7 +28,6 @@ const todos = [
   { userId: 5, id: 'fbgg8a42-df38-43e4-afa6-1b62718693ff', title: 'Learn Python', completed: false },
 ];
 
-
 app.use(cors());
 app.use(express.json());
 
@@ -75,22 +74,3 @@ app.listen(port, () => {
 
 
 module.exports = app;
-
-
-
-
-
-
-
-// app.get('/123', (req, res) => {
-//   const userId = req.query.userId;
-//   const neededUser = db.users.find(user => user.id == userId);
-
-//   res.json(neededUser || { error: 'User not exists!' });
-// });
-
-
-
-
-
-
