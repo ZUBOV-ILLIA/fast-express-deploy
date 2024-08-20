@@ -1,5 +1,7 @@
 const express = require("express");
 const cors = require('cors');
+// const path = require('path');
+// const { error } = require('console');
 const app = express();
 const port = 3001;
 
@@ -28,23 +30,26 @@ const todos = [
 
 
 app.use(cors());
-app.get("/", (req, res) => res.send("Express on Vercel"));
+app.use(express.json());
+
+
+app.get("/", (req, res) => {
+  res.send("<h1>Express on Vercel</h1>")
+});
+
+app.get('/todos', (req, res) => {
+  res.json(todos);
+});
 
 app.listen(port, () => {
+  // console.clear();
   console.log(`http://localhost:${port}}`)
 });
+
 
 module.exports = app;
 
 
-// const path = require('path');
-// const { error } = require('console');
-// const port = 3000;
-
-
-
-
-// app.use(express.json());
 
 // app.post('/todo', (req, res, ) => {
 //   const { userId, id, title, completed } = req.body;
@@ -73,9 +78,7 @@ module.exports = app;
 //   res.json(newTodo);
 // });
 
-// app.get('/todos', (req, res) => {
-//   res.json(todos);
-// });
+
 
 // app.get('/123', (req, res) => {
 //   const userId = req.query.userId;
@@ -84,7 +87,8 @@ module.exports = app;
 //   res.json(neededUser || { error: 'User not exists!' });
 // });
 
-// app.listen(port, () => {
-//   console.clear();
-//   console.log(`http://localhost:${port}`)
-// });
+
+
+
+
+
