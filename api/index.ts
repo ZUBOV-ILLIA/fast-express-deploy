@@ -41,6 +41,33 @@ app.get('/todos', (req, res) => {
   res.json(todos);
 });
 
+app.post('/todo', (req, res, ) => {
+  const { userId, id, title, completed } = req.body;
+
+  // Check if all required fields are present
+  if (!userId || !id || !title || completed === undefined) {
+    res.status(400).json({ error: 'All fields are required!' });
+    return;
+  }
+
+  // Check if title is not an empty string
+  if (typeof title !== 'string' || title.trim() === '') {
+    res.status(400).json({ error: 'Title cannot be empty!' });
+    return;
+  }
+
+  // Check if completed is a boolean
+  if (typeof completed !== 'boolean') {
+    res.status(400).json({ error: 'Completed must be a boolean!' });
+    return;
+  }
+
+  const newTodo = { userId, id, title: title.trim(), completed };
+  todos.unshift(newTodo);
+
+  res.json(newTodo);
+});
+
 app.listen(port, () => {
   // console.clear();
   console.log(`http://localhost:${port}}`)
@@ -51,32 +78,7 @@ module.exports = app;
 
 
 
-// app.post('/todo', (req, res, ) => {
-//   const { userId, id, title, completed } = req.body;
 
-//   // Check if all required fields are present
-//   if (!userId || !id || !title || completed === undefined) {
-//     res.status(400).json({ error: 'All fields are required!' });
-//     return;
-//   }
-
-//   // Check if title is not an empty string
-//   if (typeof title !== 'string' || title.trim() === '') {
-//     res.status(400).json({ error: 'Title cannot be empty!' });
-//     return;
-//   }
-
-//   // Check if completed is a boolean
-//   if (typeof completed !== 'boolean') {
-//     res.status(400).json({ error: 'Completed must be a boolean!' });
-//     return;
-//   }
-
-//   const newTodo = { userId, id, title: title.trim(), completed };
-//   todos.unshift(newTodo);
-
-//   res.json(newTodo);
-// });
 
 
 
